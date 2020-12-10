@@ -1,5 +1,6 @@
 package com.yemagci.shoppingapp.product.domain;
 
+import lombok.Builder;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
@@ -11,6 +12,7 @@ import java.util.List;
 @Document(collection="product")//mongonun map ingi
 @Getter
 @Setter
+@Builder
 @EqualsAndHashCode(of="id")
 public class Product {
     private String id;

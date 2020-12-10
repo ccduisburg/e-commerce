@@ -6,6 +6,6 @@ import org.springframework.stereotype.Service;
 public class ProductImageService {
 
     public String getProductMainImage(String productId){
-    return null;
+      return "https://productimages.hepsiburada.net/s/32/500/10352568139826.jpg";
     }
 }

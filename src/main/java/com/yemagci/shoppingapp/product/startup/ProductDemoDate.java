@@ -1,8 +1,11 @@
 package com.yemagci.shoppingapp.product.startup;
 
 import com.yemagci.shoppingapp.product.domain.MoneyTypes;
-import com.yemagci.shoppingapp.product.model.ProductSaveRequest;
+import com.yemagci.shoppingapp.product.model.category.CategorySaveRequest;
+import com.yemagci.shoppingapp.product.model.category.CategoryResponse;
+import com.yemagci.shoppingapp.product.model.product.ProductSaveRequest;
 import com.yemagci.shoppingapp.product.service.ProductService;
+import com.yemagci.shoppingapp.product.service.category.CategoryService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
 
@@ -19,6 +22,7 @@ import java.util.stream.IntStream;
 @RequiredArgsConstructor
 public class ProductDemoDate {
  private final ProductService productService;
+ private final CategoryService categoryService;
 
 // @PostConstruct
 // init(){
@@ -29,6 +33,10 @@ public class ProductDemoDate {
  public void migrate(){
     Long countData=productService.count().block();
    if(countData.equals(0L)){
+       CategoryResponse elektronik=categoryService.save(CategorySaveRequest.builder().name("Elektronik").build());
+       CategoryResponse telefon=categoryService.save(CategorySaveRequest.builder().name("Mobile").build());
+
+
        IntStream.range(0,20).forEach(item->{
            productService.save(
                ProductSaveRequest.builder()
@@ -36,7 +44,7 @@ public class ProductDemoDate {
                        .id(UUID.randomUUID().toString())
                        .description("Product "+item)
                        .money(MoneyTypes.EUR)
-                       .categoryId(UUID.randomUUID().toString())
+                       .categoryId(telefon.getId())
                        .name("Product name "+item)
                        .features("<li>Black_Color</li><li>Aluminyum case</li><li>2 year Warranty</li> <li>5 Inch(35x55mm)</li>")
                        .price(BigDecimal.TEN)

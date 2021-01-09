@@ -1,6 +1,6 @@
 package com.yemagci.shoppingapp.product.api;
 
-import com.yemagci.shoppingapp.product.model.ProductResponse;
+import com.yemagci.shoppingapp.product.model.product.ProductResponse;
 import com.yemagci.shoppingapp.product.service.ProductService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,7 +13,7 @@ import reactor.core.publisher.Flux;
 @RequiredArgsConstructor
 public class ProductApi {
     private final ProductService productService;
-@GetMapping
+    @GetMapping
     public Flux<ProductResponse> getAllProducts(){
         return productService.getAll();
     }

@@ -4,19 +4,17 @@ import com.yemagci.shoppingapp.product.domain.MoneyTypes;
 import com.yemagci.shoppingapp.product.domain.Product;
 import com.yemagci.shoppingapp.product.domain.ProductImage;
 import com.yemagci.shoppingapp.product.domain.es.ProductEs;
-import com.yemagci.shoppingapp.product.model.ProductResponse;
-import com.yemagci.shoppingapp.product.model.ProductSaveRequest;
-import com.yemagci.shoppingapp.product.model.ProductSellerResponse;
+import com.yemagci.shoppingapp.product.model.product.ProductResponse;
+import com.yemagci.shoppingapp.product.model.product.ProductSaveRequest;
+import com.yemagci.shoppingapp.product.model.product.ProductSellerResponse;
 import com.yemagci.shoppingapp.product.repository.mongo.ProductRepository;
 import com.yemagci.shoppingapp.repository.es.ProductEsRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
-
 import java.math.BigDecimal;
 import java.util.stream.Collectors;
-
 import static com.yemagci.shoppingapp.product.domain.ProductImage.ImageType.FEATURE;
 
 

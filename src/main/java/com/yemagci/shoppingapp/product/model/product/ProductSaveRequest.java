@@ -1,4 +1,4 @@
-package com.yemagci.shoppingapp.product.model;
+package com.yemagci.shoppingapp.product.model.product;
 
 import com.yemagci.shoppingapp.product.domain.MoneyTypes;
 import lombok.Builder;

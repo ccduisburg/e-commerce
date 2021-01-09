@@ -1,4 +1,4 @@
-package com.yemagci.shoppingapp.product.model;
+package com.yemagci.shoppingapp.product.model.product;
 
 import lombok.Builder;
 import lombok.Data;

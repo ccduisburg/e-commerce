@@ -20,5 +20,5 @@ public class ProductResponse {
     private boolean freeDelivery;
     private String deliveryIn;
     private String categoryId;
-    private Enum moneyType;
+    private String moneySymbol;
 }

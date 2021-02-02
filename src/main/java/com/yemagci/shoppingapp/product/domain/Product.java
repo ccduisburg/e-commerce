@@ -8,6 +8,7 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.math.BigDecimal;
+import java.util.HashMap;
 import java.util.List;
 
 @Document(collection="product")//mongonun map ingi
@@ -25,6 +26,7 @@ public class Product {
     private String features;
     private String categoryId;
     private List<ProductImage> productImages;
+    private HashMap<MoneyTypes,BigDecimal> price;
     private Boolean active;
 
 

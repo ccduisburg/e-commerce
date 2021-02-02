@@ -43,6 +43,7 @@ public class ProductService {
                 .description(request.getDescription())
                 .features(request.getFeatures())
                 .name(request.getName())
+                .price(request.getPrice())
                 .productImages(request.getImages().stream().map(item-> new ProductImage(FEATURE,item)).collect(Collectors.toList()))
                 .build();
        product =productRepository.save(product).block();//MongoDB ye yazdik
@@ -66,9 +67,11 @@ public class ProductService {
         if(item==null){
             return null;
         }
-        BigDecimal productPrice=productPriceService.getByMoneyType(item.getId(), MoneyTypes.EUR);
+
         return ProductResponse.builder()
-            .price(productPrice)
+                //TODO: client request üzerinden
+            .price(item.getPrice().get("EURO"))
+            .moneySymbol(MoneyTypes.EUR.getSymbol())
             .name(item.getName())
             .features(item.getFeatures())
             .id(item.getId())
@@ -76,8 +79,7 @@ public class ProductService {
             .deliveryIn(productDeliveryService.getDeliveryInfo(item.getId()))
             .categoryId(item.getCategory().getId())
             .available(productAmountService.getByProductId(item.getId()))
-            .freeDelivery(productDeliveryService.freeDeliveryCheck(item.getId(),productPrice))
-            .moneyType(MoneyTypes.EUR)
+            .freeDelivery(productDeliveryService.freeDeliveryCheck(item.getId(),item.getPrice().get("USD"),MoneyTypes.EUR))
             .image(productImageService.getProductMainImage(item.getId()))
             .seller(ProductSellerResponse.builder().id(item.getSeller().getId()).name(item.getSeller().getName()).build())
             .build();
